@@ -1,7 +1,6 @@
 services:
   celestial-bodies:
     image: postgres:13
-    restart: unless-stopped
     env_file:
       - ./celestial-bodies/.env
     volumes:
@@ -10,7 +9,6 @@ services:
 
   learn-bash:
     image: mysql
-    restart: unless-stopped
     env_file:
       - ./learn-bash/.env
     volumes:
