@@ -1,0 +1,24 @@
+services:
+  celestial-bodies:
+    image: postgres:13
+    env_file:
+      - ./celestial-bodies/.env
+    volumes:
+      - db_data_postgres:/var/lib/postgresql/data
+      - ./celestial-bodies/dump.sql:/docker-entrypoint-initdb.d/celestial-bodies_dump.sql
+    entrypoint: ["sh", "-c"]
+    command: ["sleep", "infinity"]
+
+  learn-bash:
+    image: mysql
+    env_file:
+      - ./learn-bash/.env
+    volumes:
+      - db_data_mysql:/var/lib/mysql
+      - ./learn-bash/dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
+    entrypoint: ["sh", "-c"]
+    command: ["sleep", "infinity"]
+
+volumes:
+  db_data_postgres:
+  db_data_mysql:
