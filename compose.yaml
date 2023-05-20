@@ -1,0 +1,22 @@
+services:
+  celestial-bodies:
+    image: postgres:13
+    restart: unless-stopped
+    env_file:
+      - ./celestial-bodies/.env
+    volumes:
+      - db_data_postgres:/var/lib/postgresql/data
+      - ./celestial-bodies/dump.sql:/docker-entrypoint-initdb.d/celestial-bodies_dump.sql
+
+  learn-bash:
+    image: mysql
+    restart: unless-stopped
+    env_file:
+      - ./learn-bash/.env
+    volumes:
+      - db_data_mysql:/var/lib/mysql
+      - ./learn-bash/dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
+
+volumes:
+  db_data_postgres:
+  db_data_mysql:
