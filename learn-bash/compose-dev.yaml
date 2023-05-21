@@ -6,7 +6,7 @@ services:
       - ./.env
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
-      interval: 2s
+      interval: 5s
       retries: 10
     volumes:
       - db_data:/var/lib/mysql
@@ -20,7 +20,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-        restart: true
     volumes:
       - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     networks:
