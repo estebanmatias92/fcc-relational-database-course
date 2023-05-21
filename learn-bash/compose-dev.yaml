@@ -16,10 +16,11 @@ services:
 
   client:
     image: mysql:8.0
-    command: 'mysql -h db -u ${MYSQL_USER} -p${MYSQL_PASSWORD}'
+    command: ["sleep", "infinity"]
     depends_on:
       db:
         condition: service_healthy
+        restart: true
     volumes:
       - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     networks:
