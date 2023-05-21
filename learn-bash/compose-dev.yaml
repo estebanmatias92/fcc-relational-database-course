@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    #restart: always
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 2s
+      retries: 10
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
+    networks:
+      - backend
+
+  client:
+    image: mysql:8.0
+    command: 'mysql -h db -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./dump.sql:./dump.sql
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  db_data:
