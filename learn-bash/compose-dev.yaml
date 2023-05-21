@@ -8,22 +8,21 @@ services:
       - db_data:/var/lib/mysql
       - ./dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "$$MYSQL_USER", "-p$$MYSQL_PASSWORD", "$$MYSQL_DATABASE"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
     networks:
       - backend
 
   client:
     image: mysql:8.0
     command: ["sleep", "infinity"]
+    volumes:
+      - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     depends_on:
       db:
         condition: service_healthy
-    volumes:
-      - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     networks:
       - backend
 
