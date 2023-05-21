@@ -21,7 +21,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./dump.sql:./dump.sql
+      - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     networks:
       - backend
 
