@@ -1,16 +1,13 @@
+-- Remove any duplicate "learn_bash" database
+DROP DATABASE IF EXISTS learn_bash;
 
-SET GLOBAL host_cache_size=0
-
--- Remover cualquier base de datos "learn_bash" repetida
-DROP DATABASE learn_bash;
-
--- Crea la base de datos "learn_bash"
+-- Create the "learn_bash" database
 CREATE DATABASE learn_bash CHARACTER SET utf8;
 
--- Selecciona la base de datos "learn_bash"
+-- Select the "learn_bash" database
 USE learn_bash;
 
--- Crea la tabla "empleados"
+-- Create the "employees" table
 CREATE TABLE empleados (
   id INTEGER PRIMARY KEY,
   nombre TEXT NOT NULL,
@@ -18,7 +15,7 @@ CREATE TABLE empleados (
   salario INTEGER NOT NULL
 );
 
--- Inserta los datos en la tabla "empleados"
+-- Insert data into the "employees" table
 INSERT INTO empleados (id, nombre, departamento, salario) VALUES
   (1, 'Juan Pérez', 'Ventas', 60000),
   (2, 'Ana Gómez', 'Marketing', 45000),

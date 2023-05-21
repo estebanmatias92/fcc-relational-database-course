@@ -1,9 +1,9 @@
 services:
   db:
     image: mysql:8.0
-    #restart: always
+    restart: always
     env_file:
-      - .env
+      - ./.env
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
       interval: 2s
@@ -16,7 +16,7 @@ services:
 
   client:
     image: mysql:8.0
-    command: 'mysql -h db -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'
+    command: 'mysql -h db -u ${MYSQL_USER} -p${MYSQL_PASSWORD}'
     depends_on:
       db:
         condition: service_healthy
