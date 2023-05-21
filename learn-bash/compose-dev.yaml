@@ -8,7 +8,7 @@ services:
       - db_data:/var/lib/mysql
       - ./dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
       interval: 3s
       retries: 5
       start_period: 30s
