@@ -7,17 +7,14 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./dump.sql:/docker-entrypoint-initdb.d/learn-bash_dump.sql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
-      interval: 3s
-      retries: 5
-      start_period: 30s
     networks:
       - backend
 
   client:
     image: mysql:8.0
     command: ["sleep", "infinity"]
+    env_file:
+      - ./.env
     volumes:
       - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     depends_on:
