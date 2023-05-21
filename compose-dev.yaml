@@ -9,7 +9,7 @@ services:
     command: ["sleep", "infinity"]
 
   learn-bash:
-    image: mysql
+    image: mysql:debian
     env_file:
       - learn-bash/.env
     volumes:
