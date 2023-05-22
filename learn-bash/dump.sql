@@ -1,11 +1,11 @@
--- Remove any duplicate "learn_bash" database
-DROP DATABASE IF EXISTS learn_bash;
+-- Remove any duplicate "testing_mysql" database
+DROP DATABASE IF EXISTS testing_mysql;
 
--- Create the "learn_bash" database
-CREATE DATABASE learn_bash CHARACTER SET utf8;
+-- Create the "testing_mysql" database
+CREATE DATABASE testing_mysql CHARACTER SET utf8;
 
--- Select the "learn_bash" database
-USE learn_bash;
+-- Select the "testing_mysql" database
+USE testing_mysql;
 
 -- Create the "employees" table
 CREATE TABLE empleados (
