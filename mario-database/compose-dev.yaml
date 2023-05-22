@@ -1,4 +1,3 @@
-name: "psql-mario-database"
 services:
   db:
     image: postgres:13
