@@ -1,7 +1,7 @@
 services:
   db:
     image: mysql:8.0
-    restart: always
+    restart: unless-stopped
     env_file:
       - ./.env
     volumes:
@@ -19,7 +19,7 @@ services:
       - ./dump.sql:/com.docker.devenvironments.code/dump.sql
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_started
     networks:
       - backend
 
