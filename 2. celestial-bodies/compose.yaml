@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - backend
+
+  client:
+    image: postgres:13
+    command: ["sleep", "infinity"]
+    env_file:
+      - ./.env
+    volumes:
+      - ./dump.sql:/com.docker.devenvironments.code/mario-database/dump.sql
+    depends_on:
+      db:
+        condition: service_started
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  db_data:
